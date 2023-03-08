@@ -16,8 +16,7 @@ public class Produto {
 
     private static int contador = 1;
 
-    public Produto(String descricaoDoProduto, int estoqueMinimo,
-            float precoDeCusto) {
+    public Produto(String descricaoDoProduto, int estoqueMinimo, float precoDeCusto) {
         setEstoqueMinimo(estoqueMinimo);
         setDescricaoDoProduto(descricaoDoProduto);
         setPrecoDeCusto(precoDeCusto);
@@ -122,6 +121,10 @@ public class Produto {
 
     public float getTotalArrecadado() {
         return this.totalArrecadado;
+    }
+    
+    public int getEstoqueMinimo() {
+        return this.estoqueMinimo;
     }
 
 }
