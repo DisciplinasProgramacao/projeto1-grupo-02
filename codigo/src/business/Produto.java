@@ -1,39 +1,52 @@
 package business;
 
 public class Produto {
-    private int codProduto;  //OK
-    private int totalEmEstoque;
-    private boolean estaAbaixoDoLimite;
-    private int estoqueMinimo;
-    private String descricaoDoProduto;  //OK
-    private float precoDeCusto;
-    private float precoDeVenda;  //OK
-    private float margemLucro;  //OK
-    private float valorImposto;  //OK
-    private int qtdAdquirida = 0;
-    private int qtdVendida = 0;
-    private float totalGasto;
-    private float totalArrecadado = 0;
+    private int codProduto; // OK
+    private int totalEmEstoque = 0; // OK
+    private int estoqueMinimo; // OK
+    private String descricaoDoProduto; // OK
+    private float precoDeCusto; // OK
+    private float precoDeVenda; // OK
+    private float margemLucro; // OK
+    private float valorImposto; // OK
+    private int qtdAdquirida = 0; // OK
+    private int qtdVendida = 0; // OK
+    private float totalGasto = 0; // OK
+    private float totalArrecadado = 0; // OK
 
     private static int contador = 1;
 
-    public Produto(int codProduto, int totalEmEstoque, int estoqueMinimo, String descricaoDoProduto,
-            float precoDeCusto, float valorImposto, float totalGasto) {
+    public Produto(String descricaoDoProduto, int estoqueMinimo,
+            float precoDeCusto) {
+        setEstoqueMinimo(estoqueMinimo);
         setDescricaoDoProduto(descricaoDoProduto);
+        setPrecoDeCusto(precoDeCusto);
         setCodProduto();
         setMargemLucro();
         setValorImposto();
         setPrecoDeVenda();
     }
 
-    public float adquirirProduto(int qtdAdquirida){
-
+    public void adquirirProduto(int qtdAdquirida) {
+        this.totalEmEstoque += qtdAdquirida;
+        this.qtdAdquirida += qtdAdquirida;
+        this.totalGasto += (this.precoDeCusto * qtdAdquirida);
     }
 
-    public float venderProduto(int qtdVendida){
-        
+    public void venderProduto(int qtdVendida) {
+        if (qtdVendida >= this.totalEmEstoque) {
+            this.totalEmEstoque -= qtdVendida;
+            this.qtdVendida += qtdVendida;
+            this.totalArrecadado += (this.precoDeVenda * qtdVendida);
+        }
+        if (estaAbaixoDoMinimo()) {
+            System.out.println("Cuidado, seu estoque está abaixo do mínimo!");
+        }
     }
 
+    private boolean estaAbaixoDoMinimo() {
+        return this.totalEmEstoque < estoqueMinimo;
+    }
 
     private void setDescricaoDoProduto(String descricaoDoProduto) {
         if (descricaoDoProduto.length() >= 3) {
@@ -47,7 +60,6 @@ public class Produto {
         this.precoDeVenda = this.precoDeCusto + this.margemLucro + this.valorImposto;
     }
 
-
     private void setCodProduto() {
         this.codProduto = contador++;
     }
@@ -60,15 +72,17 @@ public class Produto {
         this.valorImposto = (this.precoDeCusto + this.margemLucro) * 0.18f;
     }
 
-    public void setEstoqueMinimo(int estoqueMinimo){
+    public void setEstoqueMinimo(int estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
     }
 
+    public void setPrecoDeCusto(float precoDeCusto) {
+        this.precoDeCusto = precoDeCusto;
+    }
 
     public int getCodProduto() {
         return this.codProduto;
     }
-
 
     public int getTotalEmEstoque() {
         return this.totalEmEstoque;
@@ -78,50 +92,36 @@ public class Produto {
         return this.descricaoDoProduto;
     }
 
-
     public float getPrecoDeCusto() {
         return this.precoDeCusto;
     }
-
 
     public float getPrecoDeVenda() {
         return this.precoDeVenda;
     }
 
-
     public float getMargemLucro() {
         return this.margemLucro;
     }
-
 
     public float getValorImposto() {
         return this.valorImposto;
     }
 
-
     public int getQtdAdquirida() {
         return this.qtdAdquirida;
     }
-
-    
 
     public int getQtdVendida() {
         return this.qtdVendida;
     }
 
-    
-
     public float getTotalGasto() {
         return this.totalGasto;
     }
 
-    
-
     public float getTotalArrecadado() {
         return this.totalArrecadado;
     }
-
-    
-    
 
 }
