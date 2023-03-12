@@ -7,7 +7,6 @@ public class Estoque {
 	
 	private Map<Produto, Integer> produtos;
 
-	// TODO: adicionar os seguintes atributos ao diagrama
 	private float valorTotal = 0; 
 	private int qtdTotalProdutos = 0; 
 
@@ -26,7 +25,6 @@ public class Estoque {
 		return qtdTotalProdutos;
 	}
 
-	// TODO: Alterar no diagrama de Estoque os parâmetros do método
 	public void adicionarProduto(Produto produtoAdicionado, int qtdAdquirida){
 		produtoAdicionado.adquirirProduto(qtdAdquirida);
 		produtos.put(produtoAdicionado, qtdAdquirida);
