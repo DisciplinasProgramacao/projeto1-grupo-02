@@ -55,7 +55,8 @@ public class Estoque {
 		
 	};
 	
-	/* Repõe um produto no estoque. Como parâmetros, apresenta o produto a ser reposto 
+	/*
+	 * Repõe um produto no estoque. Como parâmetros, apresenta o produto a ser reposto 
 	 * e a quantidade deste produto a ser adicionada ao estoque.
 	 */
 	public Produto reporEstoque(String produtoReposto, int qtd) {
@@ -80,7 +81,8 @@ public class Estoque {
 		return null;
 	}
 	
-	/* Remove do estoque uma quantidade especificada de determinado produto.
+	/*
+	 * Remove do estoque uma quantidade especificada de determinado produto.
 	 * O produto a ser decrescido e a quantidade a ser removida é definida nos parâmetros.
 	 */
 	
@@ -106,7 +108,8 @@ public class Estoque {
 		return null;
 	}
 	
-	/* Alerta, no console, caso algum produto esteja em quantidade inferior àquela especificada
+	/*
+	 * Alerta, no console, caso algum produto esteja em quantidade inferior àquela especificada
 	 * como mínima no atributo produto.estoqueMinimo
 	 */
 	public void produtosAbaixoMinimo() {
@@ -118,6 +121,10 @@ public class Estoque {
 		}
 	}
 	
+	/* 
+	 * Verifica se um produto existe no estoque a partir de seu nome, informado pelo usuário. 
+	 * Caso o produto consultado exista, retorna true e exibe no console o valor de seus atributos.
+	 */
 	public boolean consultaProduto(String produtoConsultado) {
 		
 		Produto produto = null;
@@ -145,6 +152,10 @@ public class Estoque {
 		return true;
 	}
 	
+	/* 
+	 * Exibe, no console, todos produtos presentes em estoque, especificando, para cada um,
+	 * seu código, descrição, estoque mínimo e preço de custo.
+	 */
 	public void consultaEstoque() {
 		System.out.println("Estoque: ");
 		System.out.println("Codigo - Nome - Estoque Min - Preco de Custo");
@@ -156,8 +167,9 @@ public class Estoque {
 		System.out.println();
 	}
 
-	/* Retorna o objeto produtos, contendo todos os produtos presentes no estoque e suas 
-	 * respectivas quantidades 
+	/* 
+	 * Retorna o objeto produtos, contendo todos os produtos presentes no estoque 
+	 * e suas respectivas quantidades 
 	 */
 	public Map<Produto, Integer> getEstoque() {
 		return produtos;

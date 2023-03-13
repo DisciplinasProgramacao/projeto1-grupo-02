@@ -31,6 +31,7 @@ public class Main {
 			
 			selectOption();
 			break;
+
 		case 2:
 			
 			System.out.println("Por favor, digite o nome do produto em estoque e a quantidade desejada para reestoque:");
@@ -46,12 +47,14 @@ public class Main {
 			
 			selectOption();
 			break;
+
 		case 3:
 			
 			estoque.consultaEstoque();
 			
 			selectOption();
 			break;
+
 		case 4:
 			
 			System.out.println("Por favor, digite o nome do produto em estoque que deseja consultar:");
@@ -64,6 +67,7 @@ public class Main {
 			
 			selectOption();
 			break;
+			
 		case 5:
 			
 			int valorEstoque = 0;
