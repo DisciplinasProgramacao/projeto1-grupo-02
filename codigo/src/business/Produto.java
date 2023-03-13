@@ -1,18 +1,18 @@
 package business;
 
 public class Produto {
-    private int codProduto; // OK
-    private int totalEmEstoque = 0; // OK
-    private int estoqueMinimo; // OK
-    private String descricaoDoProduto; // OK
-    private float precoDeCusto; // OK
-    private float precoDeVenda; // OK
-    private float margemLucro; // OK
-    private float valorImposto; // OK
-    private int qtdAdquirida = 0; // OK
-    private int qtdVendida = 0; // OK
-    private float totalGasto = 0; // OK
-    private float totalArrecadado = 0; // OK
+    private int codProduto;
+    private int totalEmEstoque = 0;
+    private int estoqueMinimo;
+    private String descricaoDoProduto;
+    private float precoDeCusto;
+    private float precoDeVenda;
+    private float margemLucro;
+    private float valorImposto;
+    private int qtdAdquirida = 0;
+    private int qtdVendida = 0;
+    private float totalGasto = 0;
+    private float totalArrecadado = 0;
 
     private static int contador = 1;
 

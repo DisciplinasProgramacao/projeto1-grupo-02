@@ -5,6 +5,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
+/* CASOS DE TESTE 
+ *
+ *  1. Adição de produto:
+ * 		- Deve adicionar produto válido	✔
+ *		- Não deve permitir a adição de produto já existente ✔
+ *	2. Remoção e retirada de produto:	
+ *		- Deve remover do estoque produto existente ✔
+ *  	- Ao tentar remover produto não existente no estoque, deve lançar exceção ✔
+ *  	- Não deve remover do estoque valor superior à quantidade existente de um produto ✔
+ *	3. Reposição de produto:
+ * 		- Não deve repor produto no estoque com valores que não sejam inteiros positivos ✔
+ * 		- Deve repor quantidade válida de produto existente no estoque ✔
+ *
+ */
+
+
 class EstoqueTest {
 	
 	Estoque estoque;
@@ -35,6 +52,12 @@ class EstoqueTest {
 		Produto produto3 = new Produto("Caixa", 10, 5);
 		estoque.adicionarProduto(produto3, 1);
 		assertEquals(2, estoque.qtdTotalProdutos());
+	}
+
+	@Test
+	void tentaAdicionarProdutoJaExistente(){
+		estoque.adicionarProduto(produto2, 1);
+		assertEquals(1, estoque.qtdTotalProdutos());
 	}
 
 	@Test
@@ -73,8 +96,6 @@ class EstoqueTest {
 		estoque.reporEstoque(produto1, 5);
 		assertEquals(10, estoque.getEstoque().get(produto1));
 	}
-	
-	// Retiradas
 	
 	@Test
 	void tentaRetirarEstoqueComValorNegativo() {
