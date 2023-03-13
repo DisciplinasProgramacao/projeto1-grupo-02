@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 /* CASOS DE TESTE 
  *
- *  1. Adição de produto:
+ * 1. Adição de produto:
  * 		- Deve adicionar produto válido	✔
  *		- Não deve permitir a adição de produto já existente ✔
- *	2. Remoção e retirada de produto:	
+ * 2. Remoção e retirada de produto:	
  *		- Deve remover do estoque produto existente ✔
  *  	- Ao tentar remover produto não existente no estoque, deve lançar exceção ✔
  *  	- Não deve remover do estoque valor superior à quantidade existente de um produto ✔
- *	3. Reposição de produto:
+ * 3. Reposição de produto:
  * 		- Não deve repor produto no estoque com valores que não sejam inteiros positivos ✔
  * 		- Deve repor quantidade válida de produto existente no estoque ✔
  *
