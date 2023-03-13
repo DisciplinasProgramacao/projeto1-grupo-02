@@ -63,7 +63,6 @@ public class Produto {
         this.codProduto = contador++;
     }
 
-    // TODO: Definir margemLucro no construtor, limitando entre 0.30 a 0.80 do precoDeCusto
     private void setMargemLucro() {
         this.margemLucro = (0.55f * this.precoDeCusto);
     }
