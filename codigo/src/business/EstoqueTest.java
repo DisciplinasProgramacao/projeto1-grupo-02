@@ -32,7 +32,7 @@ class EstoqueTest {
     	estoque = new Estoque();
 
     	produto1 = new Produto("Shampoo", 5, 100);
-		produto2 = new Produto("Livro", 100, 20);
+		produto2 = new Produto("Sabonete", 100, 20);
 
 		estoque.adicionarProduto(produto2, 50);
     }
@@ -49,7 +49,7 @@ class EstoqueTest {
 
 	@Test
 	void tentaAdicionarProduto(){
-		Produto produto3 = new Produto("Caixa", 10, 5);
+		Produto produto3 = new Produto("Sabonete", 10, 5);
 		estoque.adicionarProduto(produto3, 1);
 		assertEquals(2, estoque.qtdTotalProdutos());
 	}
@@ -74,54 +74,54 @@ class EstoqueTest {
 
 	@Test
 	void tentaReporEstoqueComValorNegativo() {
-		estoque.reporEstoque(produto1, -5);
+		estoque.reporEstoque("Shampoo", -5);
 		assertEquals(null, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaReporEstoqueComValorZero() {
-		estoque.reporEstoque(produto1, 0);
+		estoque.reporEstoque("Shampoo", 0);
 		assertEquals(null, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaReporEstoqueComValorPositivo() {
-		estoque.reporEstoque(produto1, 5);
+		estoque.reporEstoque("Shampoo", 5);
 		assertEquals(5, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaReporEstoqueComValorPrevio() {
-		estoque.reporEstoque(produto1, 5);
-		estoque.reporEstoque(produto1, 5);
+		estoque.reporEstoque("Shampoo", 5);
+		estoque.reporEstoque("Shampoo", 5);
 		assertEquals(10, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaRetirarEstoqueComValorNegativo() {
-		estoque.reporEstoque(produto1, 100);
-		estoque.retirarEstoque(produto1, -5);
+		estoque.reporEstoque("Shampoo", 100);
+		estoque.retirarEstoque("Shampoo", -5);
 		assertEquals(100, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaRetirarEstoqueComValorZero() {
-		estoque.reporEstoque(produto1, 100);
-		estoque.reporEstoque(produto1, 0);
+		estoque.reporEstoque("Shampoo", 100);
+		estoque.reporEstoque("Shampoo", 0);
 		assertEquals(100, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaRetirarEstoqueComValorPositivo() {
-		estoque.reporEstoque(produto1, 100);
-		estoque.retirarEstoque(produto1, 5);
+		estoque.reporEstoque("Shampoo", 100);
+		estoque.retirarEstoque("Shampoo", 5);
 		assertEquals(95, estoque.getEstoque().get(produto1));
 	}
 	
 	@Test
 	void tentaRetirarEstoqueMaisDoQuePossivel() {
-		estoque.reporEstoque(produto1, 100);
-		estoque.retirarEstoque(produto1, 150);
+		estoque.reporEstoque("Shampoo", 100);
+		estoque.retirarEstoque("Shampoo", 150);
 		assertEquals(0, estoque.getEstoque().get(produto1));
 	}
 }
