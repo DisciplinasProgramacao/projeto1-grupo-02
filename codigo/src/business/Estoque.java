@@ -37,9 +37,28 @@ public class Estoque {
 	 * Adiciona um novo produto ao estoque. Como parâmetros, apresenta o produto 
 	 * a ser adicionado e a quantidade deste prouduto a ser adquirida.
 	 */
-	public void adicionarProduto(Produto produtoAdicionado, int qtdAdquirida){
-		produtoAdicionado.adquirirProduto(qtdAdquirida);
-		produtos.put(produtoAdicionado, qtdAdquirida);
+	public void adicionarProduto(Produto produtoAdicionado) {
+
+		
+		for (Produto all : produtos.keySet()) {
+			if (all.getDescricaoDoProduto().equals(produtoAdicionado.getDescricaoDoProduto())) {
+				 return;
+			}
+		}
+		
+		produtos.put(produtoAdicionado, 0);
+	}
+	
+	public void adicionarProduto(Produto produtoAdicionado, int qtd) {
+
+		
+		for (Produto all : produtos.keySet()) {
+			if (all.getDescricaoDoProduto().equals(produtoAdicionado.getDescricaoDoProduto())) {
+				 return;
+			}
+		}
+		
+		produtos.put(produtoAdicionado, qtd);
 	}
 
 	/* 
@@ -75,6 +94,7 @@ public class Estoque {
 			}
 			
 			getEstoque().put(p, getEstoque().get(p) == null ? qtd : getEstoque().get(p) + qtd);
+			p.adquirirProduto(qtd);
 			return p;
 		}
 		
@@ -102,6 +122,7 @@ public class Estoque {
 			}
 			
 			getEstoque().put(p, getEstoque().get(p) - qtd >= 0 ? getEstoque().get(p) - qtd : 0);
+			p.venderProduto(qtd);
 			return p;
 		}
 		
@@ -173,6 +194,16 @@ public class Estoque {
 	 */
 	public Map<Produto, Integer> getEstoque() {
 		return produtos;
+	}
+	
+	public int getValorEstoque() {	
+		int valorEstoque = 0;
+		
+		for (Produto all : produtos.keySet()) {
+			valorEstoque += (all.getPrecoDeCusto() * getEstoque().get(all));
+		}
+		
+		return valorEstoque;
 	}
 	
 }

@@ -8,8 +8,6 @@ import business.Produto;
 public class Main {
 	
 	public static Estoque estoque = new Estoque();
-	public static int valorVendido = 0;
-	public static int valorGasto = 0;
 	
 	public static void executaOpcao(int opcao) {
 		
@@ -24,7 +22,6 @@ public class Main {
 			
 			if (vendeu != null) {
 				System.out.println("Venda realizada com sucesso!");
-				valorVendido += vendeu.getPrecoDeVenda();
 			} else {
 				System.out.println("Houve um erro ao realizar a venda.");
 			}
@@ -40,7 +37,6 @@ public class Main {
 			
 			if (reestocou != null) {
 				System.out.println("Reestoque realizado com sucesso!");
-				valorGasto += reestocou.getPrecoDeCusto();
 			} else {
 				System.out.println("Houve um erro ao realizar o reestoque.");
 			}
@@ -70,16 +66,10 @@ public class Main {
 			
 		case 5:
 			
-			int valorEstoque = 0;
-			
-			for (Produto all : estoque.getEstoque().keySet()) {
-				valorEstoque += (all.getPrecoDeCusto() * estoque.getEstoque().get(all));
-			}
-			
 			System.out.println("Balanço Simplificado: ");
-			System.out.println("Valor do Estoque: " + valorEstoque);
-			System.out.println("Valor Vendido: " + valorVendido);
-			System.out.println("Valor Gasto: " + valorGasto);
+			System.out.println("Valor do Estoque: " + estoque.getValorEstoque());
+			System.out.println("Valor Vendido: " + Produto.getTotalArrecadado());
+			System.out.println("Valor Gasto: " + Produto.getTotalGasto());
 			
 			selectOption();
 			break;

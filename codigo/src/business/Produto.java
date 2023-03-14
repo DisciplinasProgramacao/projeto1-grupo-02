@@ -11,8 +11,8 @@ public class Produto {
     private float valorImposto;
     private int qtdAdquirida = 0;
     private int qtdVendida = 0;
-    private float totalGasto = 0;
-    private float totalArrecadado = 0;
+    private static float totalGasto = 0;
+    private static float totalArrecadado = 0;
 
     private static int contador = 1;
 
@@ -29,14 +29,14 @@ public class Produto {
     public void adquirirProduto(int qtdAdquirida) {
         this.totalEmEstoque += qtdAdquirida;
         this.qtdAdquirida += qtdAdquirida;
-        this.totalGasto += (this.precoDeCusto * qtdAdquirida);
+        totalGasto += (this.precoDeCusto * qtdAdquirida);
     }
 
     public void venderProduto(int qtdVendida) {
         if (qtdVendida >= this.totalEmEstoque) {
             this.totalEmEstoque -= qtdVendida;
             this.qtdVendida += qtdVendida;
-            this.totalArrecadado += (this.precoDeVenda * qtdVendida);
+            totalArrecadado += (this.precoDeVenda * qtdVendida);
         }
         if (estaAbaixoDoMinimo()) {
             System.out.println("Cuidado, seu estoque está abaixo do mínimo!");
@@ -115,12 +115,12 @@ public class Produto {
         return this.qtdVendida;
     }
 
-    public float getTotalGasto() {
-        return this.totalGasto;
+    public static float getTotalGasto() {
+        return totalGasto;
     }
 
-    public float getTotalArrecadado() {
-        return this.totalArrecadado;
+    public static float getTotalArrecadado() {
+        return totalArrecadado;
     }
     
     public int getEstoqueMinimo() {
