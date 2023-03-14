@@ -26,39 +26,47 @@ public class Produto {
         setPrecoDeVenda();
     }
 
-
-
     /*
      * Adquire/compra um produto, adiciona o produto no estoque.
      */
     public void adquirirProduto(int qtdAdquirida) {
-        this.totalEmEstoque += qtdAdquirida;
-        this.qtdAdquirida += qtdAdquirida;
-        totalGasto += (this.precoDeCusto * qtdAdquirida);
+        if (qtdAdquirida > 0) {
+            this.totalEmEstoque += qtdAdquirida;
+            this.qtdAdquirida += qtdAdquirida;
+            totalGasto += (this.precoDeCusto * qtdAdquirida);
+        }
+
     }
 
     /*
-     * Vende o produto se a quantidade que for vender for menor ou igual à quantidade em estoque
+     * Vende o produto se a quantidade que for vender for menor ou igual à
+     * quantidade em estoque
      * calcula o total arrecadado de venda de cada produto
      */
     public void venderProduto(int qtdVendida) {
-        if (qtdVendida <= this.totalEmEstoque) {
-            this.totalEmEstoque -= qtdVendida;
-            this.qtdVendida += qtdVendida;
-            totalArrecadado += (this.precoDeVenda * qtdVendida);
+        if (qtdVendida > 0) {
+            if (qtdVendida <= this.totalEmEstoque) {
+                this.totalEmEstoque -= qtdVendida;
+                this.qtdVendida += qtdVendida;
+                totalArrecadado += (this.precoDeVenda * qtdVendida);
+            }
+            if (estaAbaixoDoMinimo()) {
+                System.out.println("Cuidado, seu estoque está abaixo do mínimo!");
+            }
         }
-        if (estaAbaixoDoMinimo()) {
-            System.out.println("Cuidado, seu estoque está abaixo do mínimo!");
-        }
+
     }
+
     /*
      * retorna verdadeiro se o total em estoque for menor que o estoque minimo
      */
     private boolean estaAbaixoDoMinimo() {
         return this.totalEmEstoque < estoqueMinimo;
     }
+
     /*
-     * recebe uma descrição de produto e checa se a descrição tem pelo menos 3 caracteres
+     * recebe uma descrição de produto e checa se a descrição tem pelo menos 3
+     * caracteres
      */
     private void setDescricaoDoProduto(String descricaoDoProduto) {
         if (descricaoDoProduto.length() >= 3) {
@@ -67,19 +75,24 @@ public class Produto {
             this.descricaoDoProduto = "Descricao inválida!";
         }
     }
+
     /*
-     * calcula o preço de venda do produto de acordo com as regras de negócio solicitadas:
+     * calcula o preço de venda do produto de acordo com as regras de negócio
+     * solicitadas:
      * o preço de venda = preço de custo + margem de lucro + valor do imposto
      */
     private void setPrecoDeVenda() {
         this.precoDeVenda = this.precoDeCusto + this.margemLucro + this.valorImposto;
     }
+
     /*
-     * cria um código de produto único para cada produto que recebe um contador estático
+     * cria um código de produto único para cada produto que recebe um contador
+     * estático
      */
     private void setCodProduto() {
         this.codProduto = contador++;
     }
+
     /*
      * calcula a margem de lucro do produto de acordo com a regra de negócio:
      * margem de lucro = 55% do preço de custo
@@ -87,9 +100,10 @@ public class Produto {
     private void setMargemLucro() {
         this.margemLucro = (0.55f * this.precoDeCusto);
     }
+
     /*
      * calcula o valor de imposto do produto de acordo com a regra de negócio:
-     * valor do imposto = 18% do (preço de custo + margem de lucro) 
+     * valor do imposto = 18% do (preço de custo + margem de lucro)
      */
     private void setValorImposto() {
         this.valorImposto = (this.precoDeCusto + this.margemLucro) * 0.18f;
@@ -146,7 +160,7 @@ public class Produto {
     public static float getTotalArrecadado() {
         return totalArrecadado;
     }
-    
+
     public int getEstoqueMinimo() {
         return this.estoqueMinimo;
     }
