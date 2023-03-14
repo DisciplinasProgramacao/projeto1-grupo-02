@@ -17,7 +17,7 @@ public class Estoque {
 
 
 	/* 
-	 * Calcula o valor total dos produtos presentes no estoque.
+	 * Calcula o valor total de todos os produtos presentes em estoque.
 	 */
 	public float calcularValorTotal(){
 		produtos.forEach((key, value) -> valorTotal =+ key.getPrecoDeVenda());
@@ -34,37 +34,26 @@ public class Estoque {
 	}
 
 	/* 
-	 * Adiciona um novo produto ao estoque. Como parâmetros, apresenta o produto 
-	 * a ser adicionado e a quantidade deste prouduto a ser adquirida.
+	 * Adiciona um novo produto ao estoque. 
+	 * @param produtoAdicionado Apresenta o produto a ser adicionado ao estoque
 	 */
 	public void adicionarProduto(Produto produtoAdicionado) {
 
-		
 		for (Produto all : produtos.keySet()) {
 			if (all.getDescricaoDoProduto().equals(produtoAdicionado.getDescricaoDoProduto())) {
-				 return;
+				return;
 			}
 		}
 		
 		produtos.put(produtoAdicionado, 0);
 	}
 	
-	public void adicionarProduto(Produto produtoAdicionado, int qtd) {
-
-		
-		for (Produto all : produtos.keySet()) {
-			if (all.getDescricaoDoProduto().equals(produtoAdicionado.getDescricaoDoProduto())) {
-				 return;
-			}
-		}
-		
-		produtos.put(produtoAdicionado, qtd);
-	}
 
 	/* 
-	 * Remove um produto de estoque. O produto a ser removido é especificado no parâmetro.  
+	 * Remove um produto de estoque. 
+	 * @param produtoRemovido Apresenta o produto a ser removido do estoque
 	 */
-	public void removerProduto(Produto produtoRemovido) throws Exception{
+	public void removerProduto(Produto produtoRemovido) throws NullPointerException{
 		if (produtos.containsKey(produtoRemovido)){
 			produtos.remove(produtoRemovido);
 			System.out.println("Produto removido: " + produtoRemovido.getDescricaoDoProduto());
@@ -75,8 +64,9 @@ public class Estoque {
 	};
 	
 	/*
-	 * Repõe um produto no estoque. Como parâmetros, apresenta o produto a ser reposto 
-	 * e a quantidade deste produto a ser adicionada ao estoque.
+	 * Repõe um produto no estoque. 
+	 * @param produtoReposto Produto selecionado para reposição
+	 * @param qtd Quantidade deste produto a ser adicionada ao estoque
 	 */
 	public Produto reporEstoque(String produtoReposto, int qtd) {
 		if (qtd > 0) {
@@ -103,7 +93,8 @@ public class Estoque {
 	
 	/*
 	 * Remove do estoque uma quantidade especificada de determinado produto.
-	 * O produto a ser decrescido e a quantidade a ser removida é definida nos parâmetros.
+	 * @param produtoRetirado Produto a ser decrescido
+	 * @qtd Unidades do produto a serem removidas do estoque
 	 */
 	
 	public Produto retirarEstoque(String produtoRetirado, int qtd) { 
@@ -145,6 +136,7 @@ public class Estoque {
 	/* 
 	 * Verifica se um produto existe no estoque a partir de seu nome, informado pelo usuário. 
 	 * Caso o produto consultado exista, retorna true e exibe no console o valor de seus atributos.
+	 * @param produtoConsultado Nome do produto selecionado pelo usuário para consulta
 	 */
 	public boolean consultaProduto(String produtoConsultado) {
 		
