@@ -37,8 +37,8 @@ public class Estoque {
 	 * Adiciona um novo produto ao estoque. 
 	 * @param produtoAdicionado Apresenta o produto a ser adicionado ao estoque
 	 */
-	public void adicionarProduto(Produto produtoAdicionado) {
-
+	public void adicionarProduto(Produto produtoAdicionado, int x) { //precisei colocar este parâmetro para rodar.
+		
 		for (Produto all : produtos.keySet()) {
 			if (all.getDescricaoDoProduto().equals(produtoAdicionado.getDescricaoDoProduto())) {
 				return;
